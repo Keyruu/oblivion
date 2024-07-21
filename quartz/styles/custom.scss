@@ -1,3 +1,47 @@
 @use "./base.scss";
 
+@font-face {
+  font-family: 'ClashDisplay';
+  src: url('/static/fonts/ClashDisplay-Variable.woff2') format('woff2'),
+  url('/static/fonts/ClashDisplay-Variable.woff') format('woff'),
+  url('/static/fonts/ClashDisplay-Variable.ttf') format('truetype');
+  font-weight: 200 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Zodiak';
+  src: url("/static/fonts/Zodiak-Variable.woff2") format("woff2"),
+  url("/static/fonts/Zodiak-Variable.woff") format("woff"),
+  url("/static/fonts/Zodiak-Variable.ttf") format("truetype");
+  font-weight: 200 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'JetBrainsMono';
+  src: url("/static/fonts/JetBrainsMono-Variable.woff2") format("woff2"),
+  url("/static/fonts/JetBrainsMono-Variable.woff") format("woff"),
+  url("/static/fonts/JetBrainsMono-Variable.ttf") format("truetype");
+  font-weight: 100 800;
+  font-display: swap;
+  font-style: normal;
+}
+
+img[alt*="center"] {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+img[alt*="right"] {
+  float:right;
+  clear:right;
+  margin-left: 1rem;
+  margin-bottom: 2px;
+  margin-top: 2px;
+}
+
 // put your custom CSS here!
