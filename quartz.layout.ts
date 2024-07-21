@@ -5,7 +5,20 @@ import * as Component from "./quartz/components"
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
-  afterBody: [Component.Comments()],
+  afterBody: [Component.Comments({
+    provider: 'giscus',
+    options: {
+      // from data-repo
+      repo: 'keyruu/oblivion',
+      // from data-repo-id
+      repoId: 'R_kgDOMYH8cw',
+      // from data-category
+      category: 'Announcements',
+      // from data-category-id
+      categoryId: 'DIC_kwDOMYH8c84Cg-En',
+      mapping: 'pathname',
+    }
+  })],
   footer: Component.Footer({
     links: {
       Keyruu: "https://keyruu.de",
