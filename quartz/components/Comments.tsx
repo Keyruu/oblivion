@@ -1,5 +1,4 @@
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
-import style from './styles/comments.scss'
 
 type Options = {
   provider: "giscus"
@@ -62,8 +61,6 @@ export default ((opts: Options) => {
         window.addCleanup(() => document.removeEventListener("themechange", changeTheme))
       })
   `
-
-  Comments.css = style
 
   return Comments
 }) satisfies QuartzComponentConstructor<Options>
