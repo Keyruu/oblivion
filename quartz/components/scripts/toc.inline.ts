@@ -4,8 +4,9 @@ const observer = new IntersectionObserver((entries) => {
     const slug = entry.target.id
     const tocEntryElement = document.querySelector(`a[data-for="${slug}"]`)
     const windowHeight = entry.rootBounds?.height
+
     if (windowHeight && tocEntryElement) {
-      if (entry.boundingClientRect.y < windowHeight) {
+      if (entry.isIntersecting) {
         tocEntryElement.classList.add("in-view")
       } else {
         tocEntryElement.classList.remove("in-view")
