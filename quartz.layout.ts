@@ -5,7 +5,7 @@ import * as Component from "./quartz/components"
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
-  afterBody: [Component.Comments({
+  afterBody: [Component.CustomComments({
     provider: 'giscus',
     options: {
       // from data-repo
