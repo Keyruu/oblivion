@@ -1,5 +1,5 @@
 import { i18n } from "../i18n"
-import { FullSlug, joinSegments, pathToRoot } from "../util/path"
+import { FullSlug, joinSegments, pathToRoot, transformInternalLink, transformLink } from "../util/path"
 import { JSResourceToScriptElement } from "../util/resources"
 import { googleFontHref } from "../util/theme"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
@@ -16,7 +16,6 @@ export default (() => {
     const baseDir = fileData.slug === "404" ? path : pathToRoot(fileData.slug!)
 
     const iconPath = joinSegments(baseDir, "static/icon.png")
-    const ogImagePath = `https://${cfg.baseUrl}/static/og-image.png`
 
     return (
       <head>
@@ -30,12 +29,20 @@ export default (() => {
           </>
         )}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:site_name" content="Keyruu's Castle Oblivion" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        {cfg.baseUrl && <meta property="og:image" content={ogImagePath} />}
-        <meta property="og:width" content="1200" />
-        <meta property="og:height" content="675" />
+        {cfg.baseUrl && <meta property="og:image" content={`${url}static/og-image.png`} />}
+        <meta property="og:width" content="1518" />
+        <meta property="og:height" content="942" />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={url + (fileData.slug || "")} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@KeyruuStreams" />
+        <meta name="twitter:creator" content="@KeyruuStreams" />
+        <meta name="theme-color" content="#121212" />
         <link rel="icon" href={iconPath} />
+        <link rel="canonical" href={url + (fileData.slug || "")}/>
         <meta name="description" content={description} />
         <meta name="generator" content="Quartz" />
         {css.map((href) => (
