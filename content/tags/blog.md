@@ -1,8 +1,9 @@
 ---
 title: My Blog
-description: Keyruu's Blog
-tags:
-  - blog
+description: What really is a blog? Just text or something more?
+draft: 
+aliases:
+  - Blog/index
 ---
 > Wait I thought you said this isn't a blog?
 
