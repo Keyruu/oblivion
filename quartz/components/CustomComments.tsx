@@ -63,7 +63,6 @@ export default ((opts: Options) => {
       }
 
       document.addEventListener("nav", ({detail}) => {
-        console.log("nav", detail)
         if (haveComments(detail)) {
           loadGiscus()
         }
