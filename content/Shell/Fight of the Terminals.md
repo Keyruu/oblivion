@@ -5,5 +5,5 @@ tags:
   - terminal
   - blog
   - productivity
-draft:
+draft: true
 ---
