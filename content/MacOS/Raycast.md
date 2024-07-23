@@ -1,13 +1,12 @@
 ---
-title: How I use Raycast to boost my productivity
+title: Have everything at your fingertips with Raycast
 description: Raycast is an awesome Spotlight replacement and I couldn't work without it. Calendar Events, App switching, Window Management, Extensions and much more.
 tags:
   - productivity
   - macos
   - raycast
   - blog
-draft: 
-ogImage: raycast-og.png
+draft:
 ---
 When I switched to MacOS it really was something different. Coming from Windows I didn't feel at home but I was open to adjust my workflow to fit MacOS best.
 

@@ -93,7 +93,6 @@ declare module "vfile" {
         lang: string
         enableToc: string
         cssclasses: string[]
-        ogImage: string
       }>
   }
 }
