@@ -6,7 +6,8 @@ tags:
   - macos
   - raycast
   - blog
-draft:
+draft: 
+date: 2024-07-22
 ---
 When I switched to MacOS it really was something different. Coming from Windows I didn't feel at home but I was open to adjust my workflow to fit MacOS best.
 
