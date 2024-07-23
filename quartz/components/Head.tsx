@@ -39,13 +39,11 @@ export default (() => {
         <meta property="og:width" content="1518" />
         <meta property="og:height" content="942" />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={pageUrl} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@KeyruuStreams" />
         <meta name="twitter:creator" content="@KeyruuStreams" />
-        <meta name="theme-color" content="#121212" />
+        <meta name="theme-color" content="#1C9C4C" />
         <link rel="icon" href={iconPath} />
-        <link rel="canonical" href={pageUrl}/>
         <meta name="description" content={description} />
         <meta name="generator" content="Quartz" />
         {css.map((href) => (

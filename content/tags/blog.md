@@ -1,9 +1,6 @@
 ---
 title: My Blog
 description: What really is a blog? Just text or something more?
-draft: 
-aliases:
-  - Blog/
 ---
 > Wait I thought you said this isn't a blog?
 
