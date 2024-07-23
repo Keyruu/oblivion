@@ -173,7 +173,7 @@ in
   }
 ```
 
-Here is a link to my nix repo on GitHub, where you can find the full file: [mealie.nix](https://github.com/Keyruu/shinyflakes/blob/main/hosts/hati/stacks/mealie.nixl)
+Here is a link to my nix repo on GitHub, where you can find the full file: [mealie.nix](https://github.com/Keyruu/shinyflakes/blob/main/hosts/hati/stacks/mealie.nix)
 
 # Closing Words
 
