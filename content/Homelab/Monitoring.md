@@ -345,10 +345,16 @@ users.groups.alertmanager = {};
 ## [Grafana](https://grafana.com)
 The final step is too actual see something. For that you use Grafana. This is a tool for creating dashboards for various datasources. In our case Prometheus and Loki.
 
-The workflow here is to start with and empty dashboards folder. Try out some of the dashboards and then put the ones you want to keep or you created yourself into dashboards folder as a JSON.
+The workflow here is to start with and empty `dashboards` folder. Try out some of the `dashboards` and then put the ones you want to keep or you created yourself into dashboards folder as a JSON.
 
 ```nix title="grafana.nix"
 {config, ...}: {
+  environment.etc."grafana/dashboards" = {
+    source = ./dashboards;
+    user = "grafana";
+    group = "grafana";
+  };
+
   services.grafana = {
     enable = true;
 
