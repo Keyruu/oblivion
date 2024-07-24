@@ -8,6 +8,7 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
+    siteName: "Keyruu's Castle Oblivion",
     pageTitle: "🏰️ Oblivion",
     enableSPA: true,
     enablePopovers: true,
@@ -19,6 +20,7 @@ const config: QuartzConfig = {
     baseUrl: "oblivion.keyruu.de",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "created",
+    generateSocialImages: true,
     theme: {
       fontOrigin: "local",
       cdnCaching: false,

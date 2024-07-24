@@ -186,8 +186,10 @@ a {
     & .sidebar.left {
       left: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
       @media all and (max-width: $fullPageWidth) {
-        gap: 0;
+        gap: 10px;
         align-items: center;
+        display: flex;
+        flex-wrap: wrap;
       }
     }
 
@@ -529,7 +531,6 @@ ol.overflow {
     bottom: 0;
     opacity: 1;
     transition: opacity 0.3s ease;
-    background: linear-gradient(transparent 0px, var(--light));
   }
 }
 
