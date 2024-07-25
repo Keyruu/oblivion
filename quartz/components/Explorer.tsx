@@ -87,6 +87,7 @@ export default ((userOpts?: Partial<Options>) => {
         <button
           type="button"
           id="explorer"
+          class="collapsed"
           data-behavior={opts.folderClickBehavior}
           data-collapsed={opts.folderDefaultState}
           data-savestate={opts.useSavedState}
@@ -108,7 +109,7 @@ export default ((userOpts?: Partial<Options>) => {
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </button>
-        <div id="explorer-content">
+        <div id="explorer-content" class="collapsed" style="max-height: 0px;">
           <ul class="overflow" id="explorer-ul">
             <ExplorerNode node={fileTree} opts={opts} fileData={fileData} />
             <li id="explorer-end" />

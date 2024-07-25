@@ -21,7 +21,7 @@ function toggleExplorer(this: HTMLElement) {
   if (!content) return
 
   content.classList.toggle("collapsed")
-  content.style.maxHeight = content.style.maxHeight === "0px" ? content.scrollHeight + "px" : "0px"
+  content.style.maxHeight = content.style.maxHeight === "0px" ? "none" : "0px"
 }
 
 function toggleFolder(evt: MouseEvent) {
