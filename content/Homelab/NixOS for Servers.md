@@ -1,6 +1,6 @@
 ---
 title: Is NixOS the best OS for servers?
-description: "Find out if I think that NixOS is the best OS for your servers. Spoiler: Yes I do think that."
+description: What if every server was reproducible? If every server had the ability to rollback? Every server could be configured with one language? Meet NixOS.
 tags:
   - nixos
   - nix
@@ -14,7 +14,7 @@ I first want to tell you my journey with NixOS to better understand where I'm co
 
 # My Journey
 ![[nixos-learning-curve.png]]
-I have been working with Linux on servers (CentOS, Debian) for about 6 years now. I also used it as a desktop environment (Ubuntu) for about 3 years in my apprentice ship. I do know a little bit about it but I am by no means a Linux crack. 
+I have been working with Linux on servers (CentOS, Debian) for about 6 years now. I also used it as a desktop environment (Ubuntu) for about 3 years in my apprenticeship. I do know a little bit about it but I am by no means a Linux crack. 
 
 Last year a [friend of mine](https://joinemm.dev/) talked a bunch about NixOS and he started using it for his personal and work computer. I took a look at it and was very confused about everything. This isn't the Linux I know, I thought to myself. After it came up again and again and also was frequently mentioned on the [Self-Hosted Podcast](https://selfhosted.show/) I decided that it's time to take a look into this new world.
 
