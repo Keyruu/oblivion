@@ -14,17 +14,18 @@ draft: false
 title: There is an easy setup for Docker Compose on NixOS
 date: 2024-07-23
 ---
-I like NixOS. I think it's the best Linux experience I ever had because the declarative approach for defining your system is the most maintainable. Read more about what I love about NixOS [[NixOS|here]].
+I like NixOS. It's the best Linux experience I ever had because the declarative approach for defining your system is the most maintainable. Read more about what I love about NixOS [[NixOS|here]].
 
 > Why don't you use Nix without Docker?
 
-Hosting self hosted services is a breeze on NixOS. The community just makes awesome modules to use for easy configuration. But not all services that I want to self host are available on NixOS out of the box and I don't want to develop my own Nix module just to host some random app I found on GitHub. For this reason I'd still like to be able to use docker compose to set up services as I did in the past.
+Hosting homelab services is a breeze on NixOS. The community just makes awesome modules to use for easy configuration. But not all services that I want to self host are available on NixOS out of the box and I don't want to develop my own Nix module just to host some random app I found on GitHub. For this reason I'd still like to be able to use docker compose to set up services as I did in the past.
 
 And that is also another argument for docker compose. I'm very familiar with Docker and Compose and have a lot stacks already setup that I want to use without much migration work. Furthermore most of the self hosted stuff has example docker composes for you to just copy and paste.
 
 This does boil down to me being lazy or not knowing Nix that well, but I don't care. :D
 
-I do wanna say that if a service is directly available in Nix I will use that because configuring them is most of the time easier and packages are also managed by Nix.
+> [!info]
+> I do wanna say that if a service is directly available in Nix I will use that because configuring them is most of the time easier and packages are also managed by Nix.
 
 # Container Options on NixOS
 

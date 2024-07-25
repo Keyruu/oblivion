@@ -62,7 +62,7 @@ export default (() => {
 
     // Memoize google fonts
     if (!fontsPromise) {
-      fontsPromise = getSatoriFont(cfg.theme.typography.header, cfg.theme.typography.body)
+      fontsPromise = getSatoriFont(cfg.theme.typography.header, cfg.theme.typography.body, "Aktura")
     }
 
     const slug = fileData.filePath

@@ -10,18 +10,21 @@ import fs from "fs/promises"
  * @param bodyFontName name of google font used for body
  * @returns FontOptions for header and body
  */
-export async function getSatoriFont(headerFontName: string, bodyFontName: string) {
+export async function getSatoriFont(headerFontName: string, bodyFontName: string, logoFontName: string): Promise<SatoriOptions["fonts"]> {
   const headerWeight = 700 as FontWeight
   const bodyWeight = 400 as FontWeight
+  const logoWeight = 400 as FontWeight
 
   // Fetch fonts
-  const headerFont = await fs.readFile("quartz/static/fonts/Zodiak-Variable.woff")
-  const bodyFont = await fs.readFile("quartz/static/fonts/ClashDisplay-Variable.woff")
+  const headerFont = await fs.readFile("quartz/static/fonts/Zodiak-Extrabold.ttf")
+  const bodyFont = await fs.readFile("quartz/static/fonts/ClashDisplay-Regular.ttf")
+  const logoFont = await fs.readFile("quartz/static/fonts/Aktura-Regular.ttf")
 
   // Convert fonts to satori font format and return
   const fonts: SatoriOptions["fonts"] = [
     { name: headerFontName, data: headerFont, weight: headerWeight, style: "normal" },
     { name: bodyFontName, data: bodyFont, weight: bodyWeight, style: "normal" },
+    { name: logoFontName, data: logoFont, weight: logoWeight, style: "normal" },
   ]
   return fonts
 }

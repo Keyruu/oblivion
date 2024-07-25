@@ -20,14 +20,14 @@ I really procrastinated on setting up my monitoring stack for my homelab. I mean
 This is a real pain to setup and maintain. But NixOS has a great solution for this. There are existing modules for all of these services and the configuration can be done in nix. This does sound weird but this has some big benefits:
 
 - You have one configuration language instead 4 different ones
-- You can reference the configuration of other services (Look at the grafana config later on)
+- You can reference the configuration of other services (Look at the Grafana config later on)
 - You have an actual programming language for more advanced stuff
 
 The biggest disadvantage is that you have to translate the example configurations into the nix equivalent.
 
 So let's get into how I use this setup to monitor my homelab.
 # Metrics
-So first of you need something that collects metrics for this I use `node_exporter` and `cAdvisor`. These services all exposed the current metrics at an `/metrics` endpoint.
+So first of you need something that collects metrics for this I use `node_exporter` and `cAdvisor`. These services all expose the current metrics at an `/metrics` endpoint.
 
 ## [node_exporter](https://github.com/prometheus/node_exporter)
 This is a service that fetches metrics from the node via different collectors. For our use case we use the default collectors and the systemd collector.
@@ -38,7 +38,7 @@ This fetches data (CPU, RAM etc.) from cgroups, most commonly docker containers.
 For cAdvisor to also monitor non docker workloads (systemd services) you need to set an extra options: `--docker_only=false`.
 
 ## [Prometheus](https://prometheus.io/)
-Prometheus is the service that scrapes metrics from the services. It basically fetches metrics every x seconds and stores them in a time series database.
+Prometheus is the service that scrapes metrics from the services. It basically fetches the metrics endpoint every x seconds and stores them in a time series database.
 
 What you need to define in the prometheus config is all the targets you want to scrape. 
 
@@ -94,7 +94,7 @@ Here is the config for the exporters and prometheus itself:
 ```
 
 > [!tip]
-> Notice the use of the actual config value of the node_exporter. Isn't that awesome? 
+> Notice the use of the actual config value (`config.services.prometheus.exporters.node.port`) of the node_exporter. Isn't that awesome? 
 > If I would change the port of node_exporter it would update it in the targets as well!
 
 > [!info]
@@ -102,7 +102,7 @@ Here is the config for the exporters and prometheus itself:
 > 
 > I will also show the nginx config at the end.
 >
-> I also use `webExternalUrl` set to have Prometheus and Grafana on the same host. If you don't want that just remove the line.
+> The `webExternalUrl` is for Prometheus and Grafana being on the same hostname in the nginx. If you don't want that just remove the line.
 
 # Logs
 ## [Loki](https://grafana.com/oss/loki/)
@@ -223,7 +223,7 @@ Now we still have a thing to do before we can look at our metrics. We want to ge
 
 > [!warning]
 > In my config I use SMTP for sending alerts. For this you need a password and you shouldn't just put your secrets as plain text into the nix configs. Please use something like [sops-nix](https://github.com/Mic92/sops-nix). This takes a while to setup and wrap your head around but is necessary to have a secure config.
-I will probably write a post about this in the future.
+> I will probably write a post about this in the future.
 
 But nonetheless here is my config:
 ```nix title="alertmanager.nix"
@@ -345,10 +345,12 @@ users.groups.alertmanager = {};
 ## [Grafana](https://grafana.com)
 The final step is too actual see something. For that you use Grafana. This is a tool for creating dashboards for various datasources. In our case Prometheus and Loki.
 
-The workflow here is to start with and empty `dashboards` folder. Try out some of the `dashboards` and then put the ones you want to keep or you created yourself into dashboards folder as a JSON.
+> [!info]
+>You create dashboards in the UI but for recovery and version management sake you should also have them in a Git repo. The workflow here is to start with and empty `dashboards` folder. Try out some of the dashboards and then put the ones you want to keep or you created yourself into dashboards folder as a JSON. To do this just click on share and then export in the Grafana UI.
 
 ```nix title="grafana.nix"
 {config, ...}: {
+  # this puts the folder dashboards on the host system at /etc/grafana/dashboards
   environment.etc."grafana/dashboards" = {
     source = ./dashboards;
     user = "grafana";
@@ -375,6 +377,7 @@ The workflow here is to start with and empty `dashboards` folder. Try out some o
       enable = true;
       dashboards.settings.providers = [
         {
+          # this tells grafana to look at the path for dashboards
           options.path = "/etc/grafana/dashboards";
         }
       ];
@@ -396,11 +399,6 @@ The workflow here is to start with and empty `dashboards` folder. Try out some o
   };
 }
 ```
-
-> [!info]
-> Currently I only have the datasources as a declarative config, keep in mind that for a production setup you should also have the dashboards as files in your repo. 
-> 
-> The worst thing is to spend hours on a dashboard and then just lose it because you didn't put it in your repo.
 
 Now you also need to import Dashboards into Grafana. For this I can recommend the following:
 - [Node Exporter Full](https://grafana.com/grafana/dashboards/1860-node-exporter-full/) ID: `1860` 
@@ -467,5 +465,5 @@ I won't go into great detail how the nginx config works, I do want to have it in
 > [!warning]
 > If you don't know what `sops`, `acme` and all the other settings mean you probably shouldn't use this config :D
 
-# Closing Words
-This is a base setup. You should adjust all the snippets however you like and add as much stuff as you want to. A monitoring setup is never really done but I think I'm at a pretty good point with mine. But to see the current configuration I have you can look at my [shinyflakes repo](https://github.com/Keyruu/shinyflakes/tree/main) on GitHub.
+# Closing remarks
+This is a base setup. You should adjust all the snippets however you like and add as much stuff as you want to. A monitoring setup is never really done but I think I'm at a pretty good point with mine. To see the current configuration I have you can look at my [shinyflakes repo](https://github.com/Keyruu/shinyflakes/tree/main) on GitHub.

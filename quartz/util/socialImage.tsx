@@ -65,20 +65,17 @@ export const defaultImage: SocialImageOptions["imageStructure"] = (
         >
           {description}
         </p>
-        <img
-          alt="castle-oblivion"
-          src="https://oblivion.keyruu.de/static/icon.png"
-          width="200"
-          height="200"
-          style={{
-            position: "absolute",
-            bottom: "2rem",
-            right: "2rem",
-            height: "6rem",
-            width: "6rem",
-          }}
-        ></img>
       </div>
+      <p
+        style={{
+          color: cfg.theme.colors[colorScheme].secondary,
+          fontSize: 80,
+          right: "2rem",
+          bottom: "0",
+          position: "absolute",
+          fontFamily: fonts[2].name,
+        }}
+      >O</p>
       <div
         style={{
           height: "100%",
