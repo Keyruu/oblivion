@@ -8,6 +8,8 @@ import { ImageOptions, SocialImageOptions, getSatoriFont } from "../util/imageHe
 import sharp from "sharp"
 import { defaultImage } from "../util/socialImage"
 import { unescapeHTML } from "../util/escape"
+import fieldTypes from "rehype-citation/node/src/citation-js/plugin-bibtex/input/fieldTypes"
+import file = fieldTypes.file
 
 /**
  * Generates social image (OG/twitter standard) and saves it as `.webp` inside the public folder
@@ -164,6 +166,7 @@ export default (() => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
+        <meta name="keywords" content={fileData.frontmatter?.tags?.join(", ")} />
         <meta property="og:description" content={description} />
         <meta property="og:image:type" content={`image/${extension}`} />
         <meta property="og:image:alt" content={description} />
