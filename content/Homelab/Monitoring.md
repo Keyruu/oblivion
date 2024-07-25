@@ -15,6 +15,8 @@ draft: false
 title: My Monitoring Stack for self-hosted services on NixOS
 date: 2024-07-23
 ---
+You should first read about [[NixOS for Servers|why I love NixOS on the server]].
+
 I really procrastinated on setting up my monitoring stack for my homelab. I mean how they heck are you supposed to have an overview of all services needed for a proper monitoring stack? There is Grafana, Prometheus, Loki, Alertmanager, promtail, node_exporter and more. Every service has it's own documentation and configuration.
 
 This is a real pain to setup and maintain. But NixOS has a great solution for this. There are existing modules for all of these services and the configuration can be done in nix. This does sound weird but this has some big benefits:
@@ -223,7 +225,7 @@ Now we still have a thing to do before we can look at our metrics. We want to ge
 
 > [!warning]
 > In my config I use SMTP for sending alerts. For this you need a password and you shouldn't just put your secrets as plain text into the nix configs. Please use something like [sops-nix](https://github.com/Mic92/sops-nix). This takes a while to setup and wrap your head around but is necessary to have a secure config.
-> I will probably write a post about this in the future.
+> ~~I will probably write a post about this in the future.~~ I did write something about it [[NixOS for Servers#Secrets|here]].
 
 But nonetheless here is my config:
 ```nix title="alertmanager.nix"
@@ -440,11 +442,12 @@ I won't go into great detail how the nginx config works, I do want to have it in
 
   security.acme = {
       certs."lab.example.com" = {
-      domain = "lab.example.com";
-      extraDomainNames = [ "*.lab.example.com" ];
-      dnsProvider = "cloudflare";
-      dnsPropagationCheck = true;
-      credentialsFile = config.sops.secrets.cloudflare.path;
+        domain = "lab.example.com";
+        extraDomainNames = [ "*.lab.example.com" ];
+        dnsProvider = "cloudflare";
+        dnsPropagationCheck = true;
+        credentialsFile = config.sops.secrets.cloudflare.path;
+	  };
     };
   };
 
@@ -460,6 +463,7 @@ I won't go into great detail how the nginx config works, I do want to have it in
       proxyWebsockets = true;
     };
   };
+}
 ```
 
 > [!warning]

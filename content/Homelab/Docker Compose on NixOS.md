@@ -14,7 +14,7 @@ draft: false
 title: There is an easy setup for Docker Compose on NixOS
 date: 2024-07-23
 ---
-I like NixOS. It's the best Linux experience I ever had because the declarative approach for defining your system is the most maintainable. Read more about what I love about NixOS [[NixOS|here]].
+I like NixOS. It's the best Linux experience I ever had because the declarative approach for defining your system is the most maintainable. Read more about what I love about NixOS [[NixOS for Servers|here]].
 
 > Why don't you use Nix without Docker?
 
