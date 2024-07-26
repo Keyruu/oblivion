@@ -34,13 +34,13 @@ Half a year later and I'm also convinced that NixOS is the best distro for the s
 
 # Why?
 ## Immutable state of the OS
-If the version of the OS with all the packages worked at a certain state and an update messed something up, just rollback to the working version. You can then just spin up another machine with the new version to troubleshoot and then if it works apply the update on the original machine. That is just so incredible.
+If the version of the OS with all the packages worked at a certain state and an update messed something up, just rollback to the working version. You can then just spin up another machine with the new version to troubleshoot and if it works apply the update on the original machine. That is just so incredible.
 
 ## One place for your configuration
-I don't have to think about how I persist the configuration I did on the system. For example: I setup a backup folder, a crontab, a network change etc. This can be accomplished by Ansible but I can't really rollback a change.
+I don't have to think about how I persist the configuration on the system. For example: I setup a backup folder, a crontab, a network change etc. This can be accomplished by Ansible but I can't really rollback a change.
 
 ## One language for your configuration
-No more `yaml`, `json`, `toml`, `lua`, `.env`, `properties`, etc. This config languages are fine but they do come with some drawbacks.
+No more `yaml`, `json`, `toml`, `lua`, `.env`, `properties`, etc. These config languages are fine but they do come with some drawbacks.
 
 1. You have to remember `x` different syntaxes
 2. No config validation
@@ -82,7 +82,7 @@ Ever wanted to setup a monitoring stack, an nginx or a custom systemd service? N
 
 This safes me so many headaches and is so easy to read.
 
-For completeness here is a `nginx.conf` for optimised security:
+For completeness here is a `nginx.conf` for optimized security:
 > [!info]-
 > Yoinked this from this [GitHub post](https://gist.github.com/plentz/6737338)
 > ```nginx
@@ -171,7 +171,7 @@ For completeness here is a `nginx.conf` for optimised security:
 ## Implicit "declarativeness"
 I do catch myself doing stuff quickly to get it done, but forgetting what I changed later on. Not putting it in a repo or add it to the Ansible setup. I think everybody has done this a few times.
 
-With NixOS this just doesn't really happen anymore. The only way I change stuff at the system level is through the NixOS configuration. I know that this is not a problem with Linux per se but if the OS can get me out of that bad habbit it is a win in my book.
+With NixOS this just doesn't really happen anymore. The only way I change stuff at the system level is through the NixOS configuration. I know that this is not a problem with Linux per se but if the OS can get me out of that bad habit it is a win in my book.
 
 ## Nixpkgs has the most and newest packages
 ![[nixpkgs-map.png]]Image from [repology](https://repology.org/repositories/graphs).
@@ -191,7 +191,7 @@ Start with base NixOS, without Flakes. After you are comfortable with that, read
 Now I will go into what I do to provision and update my servers.
 
 ## Get NixOS on a server
-It isn't really easy to get a NixOS server running, but there are ways to do it. The most common way and also what I use is [nixos-anywhere](https://github.com/nix-community/nixos-anywhere). This is also a bit confusing in the beginning but just refer to [Quickstart guide](https://github.com/nix-community/nixos-anywhere/blob/main/docs/quickstart.md) and it should work. 
+It isn't really easy to get a NixOS server running, but there are ways to do it. The most common way and also what I use is [nixos-anywhere](https://github.com/nix-community/nixos-anywhere). This is also a bit confusing in the beginning but just refer to the [Quickstart guide](https://github.com/nix-community/nixos-anywhere/blob/main/docs/quickstart.md) and it should work. 
 
 Parts that I found confusing were:
 - disko-config: Just use the [example lvm config](https://github.com/nix-community/nixos-anywhere-examples/blob/main/disk-config.nix) they provide. This should be good enough for most setups.
@@ -206,7 +206,7 @@ For this you want to use [sops-nix](https://github.com/Mic92/sops-nix). I will s
 
 The files containing the secrets get encrypted with your local key and the key on the host machine. So that both you and the host machine can decrypt the secret. A key here is an [age-key](https://github.com/FiloSottile/age) but you can use your ed25519 ssh key as an age key.
 
-The secrets inside of the `secrets.yaml` will then be mounted as files on your system at `/run/secrets/`. So every key will be a file with the value of that key. 
+The secrets inside the `secrets.yaml` will then be mounted as files on your system at `/run/secrets/`. So every key will be a file with the value of that key. 
 
 Example:
 ```yaml
@@ -222,7 +222,7 @@ CLOUDFLARE_API_KEY=b9841238feb177a84330febba8a83208921177bffe733
 
 For most services in NixOS there is the possibility to then provide a secret file for a service for example the acme dns provider secret: [`security.acme.certs.<name>.environmentFile`](https://search.nixos.org/options?channel=unstable&show=security.acme.certs.%3Cname%3E.environmentFile&from=0&size=50&sort=relevance&type=packages&query=security.acme.certs.*.environment)
 
-Adding onto the earlier example this would look like this:
+Adding to the earlier example this would look like this:
 ```nix
 {config, ...}: {
   security.acme.certs."awesome.domain".environmentFile = config.sops.secrets.cloudflare.path;
