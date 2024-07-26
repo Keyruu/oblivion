@@ -168,7 +168,7 @@ in
         docker compose -f /etc/${dir}/compose.yaml up
       '';
       restartTriggers = [
-        "/etc/${dir}/compose.yaml"
+        environment.etc."${dir}/compose.yaml".text
       ];
     };
   }
