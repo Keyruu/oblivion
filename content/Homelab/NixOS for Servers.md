@@ -10,47 +10,47 @@ tags:
 draft: false
 date: 2024-07-25
 ---
-I first want to tell you my journey with NixOS to better understand where I'm coming from and how it went for me.
+I first want to tell you about my journey with NixOS to better understand where I'm coming from and how it went for me.
 
 # My Journey
 ![[nixos-learning-curve.png]]
-I have been working with Linux on servers (CentOS, Debian) for about 6 years now. I also used it as a desktop environment (Ubuntu) for about 3 years in my apprenticeship. I do know a little bit about it but I am by no means a Linux crack. 
+I have been working with Linux on servers (CentOS, Debian) for about 6 years now. I also used it as a desktop environment (Ubuntu) for about 3 years in my apprenticeship. I do know a little bit about it, but I am by no means a Linux crack. 
 
-Last year a [friend of mine](https://joinemm.dev/) talked a bunch about NixOS and he started using it for his personal and work computer. I took a look at it and was very confused about everything. This isn't the Linux I know, I thought to myself. After it came up again and again and also was frequently mentioned on the [Self-Hosted Podcast](https://selfhosted.show/) I decided that it's time to take a look into this new world.
+Last year, a [friend of mine](https://joinemm.dev/) talked a bunch about NixOS, and he started using it for his personal and work computers. I took a look at it and was very confused about everything. This isn't the Linux I know, I thought to myself. After it came up again and again and was frequently mentioned on the [Self-Hosted Podcast](https://selfhosted.show/). I decided that it's time to take a look into this new world.
 
-I actually wanted to try to migrate our Jenkins agents to be on NixOS and that didn't go well. I looked at how I would get NixOS on Hetzner and was overwhelmed by everything I had to know and do to get that working. So I just immediately went: Nope.
+I actually wanted to try to migrate our Jenkins agents to be on NixOS, but that didn't go well. I looked at how I would get NixOS on Hetzner and was overwhelmed by everything I had to know and do to get that working. So I just immediately went: Nope.
 
-After that I gave NixOS another try on a work computer we had left over. Just to dip my toes and see what the fuzz is all about. And this to wasn't that straight forward. Flashed the ISO on a USB-stick and installed it with the minimum configuration. Now what?
+After that, I gave NixOS another try on a work computer we had left over. Just to dip my toes and saw what the fuzz is all about. And this too wasn't that straight-forward. I flashed the ISO on a USB stick and installed it with the minimum configuration. Now what?
 
-Edited the `configuration.nix` file, rebuilt and see what happened. First thoughts were: Weird file format and I have no clue what all these settings mean. But I powered through until I arrived at an `x11` based system with [`xmonad`](https://xmonad.org/) running. I really liked it so far. I then tried to switch to `Wayland` to try out [`hyprland`](https://hyprland.org/) and that didn't go as planned. Weird issues because of Nvidia drivers, my second monitor would just not work at all. 
+I edited the `configuration.nix` file, rebuilt and see what happened. My first thoughts were: Weird file format and I have no clue what all these settings mean. But I powered through until I arrived at an `x11` based system with [`xmonad`](https://xmonad.org/) running. I really liked it so far. I then tried to switch to `Wayland` to try out [`hyprland`](https://hyprland.org/) and that didn't go as planned. Weird issues because of Nvidia drivers, my second monitor would just not work at all. 
 
 > Damn what do I do now? 
 
-Oh yeah I can just rollback to a working version of the system.
+Oh yeah, I can just roll back to a working version of the system.
 
 This was a big turning point for me in NixOS. At this point I was convinced that I don't want to use other Linux distros anymore.
 
-Half a year later and I'm also convinced that NixOS is the best distro for the server. Let me get into why I think that.
+Half a year later, and I'm also convinced that NixOS is the best distro for the server. Let me get into why I think that.
 
 # Why?
 ## Immutable state of the OS
-If the version of the OS with all the packages worked at a certain state and an update messed something up, just rollback to the working version. You can then just spin up another machine with the new version to troubleshoot and if it works apply the update on the original machine. That is just so incredible.
+If the version of the OS with all the packages worked at a certain state and an update messed something up, just rollback to the working version. You can then just spin up another machine with the new version to troubleshoot, and if it works, apply the update to the original machine. That is just so incredible.
 
 ## One place for your configuration
-I don't have to think about how I persist the configuration on the system. For example: I setup a backup folder, a crontab, a network change etc. This can be accomplished by Ansible but I can't really rollback a change.
+I don't have to think about how I persist the configuration on the system. For example, I set up a backup folder, a crontab, a network change, etc. This can be accomplished by Ansible, but I can't really roll back a change.
 
 ## One language for your configuration
-No more `yaml`, `json`, `toml`, `lua`, `.env`, `properties`, etc. These config languages are fine but they do come with some drawbacks.
+No more `yaml`, `json`, `toml`, `lua`, `.env`, `properties`, etc. These config languages are fine, but they do come with some drawbacks.
 
 1. You have to remember `x` different syntaxes
 2. No config validation
 3. No advanced variables or logic in most of the configs
 4. Always have separate files for everything
 
-Nix solves this by being able to cross compile to any format, because it's a programming language.
+Nix solves this by being able to cross-compile to any format, because it's a programming language.
 
 ## Awesome community modules
-Ever wanted to setup a monitoring stack, an nginx or a custom systemd service? No problem with NixOS. The modules they provide bring so much functionality and sensible defaults for stuff, it's insane. Just look at the nginx setup:
+Ever wanted to set up a monitoring stack, an nginx or a custom systemd service? No problem with NixOS. The modules they provide bring so much functionality and sensible defaults for stuff, it's insane. Just look at the nginx setup:
 
 ```nix
 {config, ...}: {
@@ -80,9 +80,9 @@ Ever wanted to setup a monitoring stack, an nginx or a custom systemd service? N
 }
 ```
 
-This safes me so many headaches and is so easy to read.
+This saves me so many headaches and is so easy to read.
 
-For completeness here is a `nginx.conf` for optimized security:
+For completeness, here is a `nginx.conf` for optimized security:
 > [!info]-
 > Yoinked this from this [GitHub post](https://gist.github.com/plentz/6737338)
 > ```nginx
@@ -171,7 +171,7 @@ For completeness here is a `nginx.conf` for optimized security:
 ## Implicit "declarativeness"
 I do catch myself doing stuff quickly to get it done, but forgetting what I changed later on. Not putting it in a repo or add it to the Ansible setup. I think everybody has done this a few times.
 
-With NixOS this just doesn't really happen anymore. The only way I change stuff at the system level is through the NixOS configuration. I know that this is not a problem with Linux per se but if the OS can get me out of that bad habit it is a win in my book.
+With NixOS, this just doesn't really happen anymore. The only way I change stuff at the system level is through the NixOS configuration. I know that this is not a problem with Linux per se, but if the OS can get me out of that bad habit, it is a win in my book.
 
 ## Nixpkgs has the most and newest packages
 ![[nixpkgs-map.png]]Image from [repology](https://repology.org/repositories/graphs).
@@ -179,7 +179,7 @@ With NixOS this just doesn't really happen anymore. The only way I change stuff 
 Do I have to say more?
 
 # How?
-Now I that I have sold you on NixOS, you wanna know how to get into it. This is probably the hardest part. I have a few resources that helped me in my journey:
+Now that I have sold you on NixOS, you wanna know how to get into it. This is probably the hardest part. I have a few resources that have helped me in my journey:
 
 - https://nixos.org/learn/
 - https://nixos-and-flakes.thiscute.world/
@@ -191,20 +191,20 @@ Start with base NixOS, without Flakes. After you are comfortable with that, read
 Now I will go into what I do to provision and update my servers.
 
 ## Get NixOS on a server
-It isn't really easy to get a NixOS server running, but there are ways to do it. The most common way and also what I use is [nixos-anywhere](https://github.com/nix-community/nixos-anywhere). This is also a bit confusing in the beginning but just refer to the [Quickstart guide](https://github.com/nix-community/nixos-anywhere/blob/main/docs/quickstart.md) and it should work. 
+It isn't really easy to get a NixOS server running, but there are ways to do it. The most common way and also what I use is [nixos-anywhere](https://github.com/nix-community/nixos-anywhere). This is also a bit confusing in the beginning, but just refer to the [Quickstart guide](https://github.com/nix-community/nixos-anywhere/blob/main/docs/quickstart.md) and it should work. 
 
 Parts that I found confusing were:
 - disko-config: Just use the [example lvm config](https://github.com/nix-community/nixos-anywhere-examples/blob/main/disk-config.nix) they provide. This should be good enough for most setups.
 - kexec: I tried Debian and that didn't have kexec, but Ubuntu had it, so just stick with Ubuntu for the first OS
 - ARM Mac: Use `--build-on-remote` for ARM Macs because you can't build the NixOS image for `x86` (full command: `nix run github:nix-community/nixos-anywhere -- --build-on-remote --flake ~/repo#hostname root@333.333.333.333`)
-- ARM Mac rebuild: After you successfully ran nixos-anywhere once you can rebuild the host directly. On ARM Mac you need to build the system on the host again this the full command I use: `nixos-rebuild switch --flake ~/repo#hostname --build-host "root@333.333.333.333" --target-host "root@333.333.333.333" --fast`
+- ARM Mac rebuild: After you successfully ran nixos-anywhere once, you can rebuild the host directly. On an ARM Mac, you need to build the system on the host again. This the full command I use: `nixos-rebuild switch --flake ~/repo#hostname --build-host "root@333.333.333.333" --target-host "root@333.333.333.333" --fast`
 
 ## Secrets
-This is another difficult topic to wrap your head around but it is very important. Now that you system is declarative you can't just put your secrets in the config files.
+This is another difficult topic to wrap your head around, but it is very important. Now that your system is declarative, you can't just put your secrets in the config files.
 
 For this you want to use [sops-nix](https://github.com/Mic92/sops-nix). I will still try to explain the general idea behind it.
 
-The files containing the secrets get encrypted with your local key and the key on the host machine. So that both you and the host machine can decrypt the secret. A key here is an [age-key](https://github.com/FiloSottile/age) but you can use your ed25519 ssh key as an age key.
+The files containing the secrets get encrypted with your local key and the key on the host machine. So that both you and the host machine can decrypt the secret. A key here is an [age-key](https://github.com/FiloSottile/age), but you can use your ed25519 ssh key as an age key.
 
 The secrets inside the `secrets.yaml` will then be mounted as files on your system at `/run/secrets/`. So every key will be a file with the value of that key. 
 
@@ -220,16 +220,16 @@ CLOUDFLARE_EMAIL=you@example.com
 CLOUDFLARE_API_KEY=b9841238feb177a84330febba8a83208921177bffe733
 ```
 
-For most services in NixOS there is the possibility to then provide a secret file for a service for example the acme dns provider secret: [`security.acme.certs.<name>.environmentFile`](https://search.nixos.org/options?channel=unstable&show=security.acme.certs.%3Cname%3E.environmentFile&from=0&size=50&sort=relevance&type=packages&query=security.acme.certs.*.environment)
+For most services in NixOS, there is the possibility to then provide a secret file for a service, for example, the acme dns provider secret: [`security.acme.certs.<name>.environmentFile`](https://search.nixos.org/options?channel=unstable&show=security.acme.certs.%3Cname%3E.environmentFile&from=0&size=50&sort=relevance&type=packages&query=security.acme.certs.*.environment)
 
-Adding to the earlier example this would look like this:
+Adding to the earlier example, this would look like this:
 ```nix
 {config, ...}: {
   security.acme.certs."awesome.domain".environmentFile = config.sops.secrets.cloudflare.path;
 }
 ```
 
-But these files are only generated on the host if you have the key defined in your Nix configuration somewhere. This can be an empty declaration, an owner assignment or anything else that defines that there is an object for that secret. 
+But these files are only generated on the host if you have the key defined in your Nix configuration somewhere. This can be an empty declaration, an owner assignment, or anything else that defines that there is an object for that secret. 
 
 For example:
 ```nix
@@ -248,9 +248,9 @@ And with this you should be all set.
 
 # Closing remarks
 ![[thank-you-nix.png]]
-I am sold on NixOS. It was a bumpy road until I got here and it felt like I was learning Linux all over again, but I really think it was worth it. The grass really is greener here. Give NixOS a try and maybe you'll fall in love with it too.
+I am sold on NixOS. It was a bumpy road until I got here, and it felt like I was learning Linux all over again, but I really think it was worth it. The grass really is greener here. Give NixOS a try, and maybe you'll fall in love with it too.
 
-You can also read about [[Docker Compose on NixOS|how I use docker-compose on NixOS]] and [[Monitoring|how I setup my monitoring stack on NixOS]].
+You can also read about [[Docker Compose on NixOS|how I use docker-compose on NixOS]] and [[Monitoring|how I set up my monitoring stack on NixOS]].
 
 > [!info]
 > By the way I do think that NixOS is also awesome for a desktop environment, but I'm too deep into the MacOS rabbit hole.
