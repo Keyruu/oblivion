@@ -18,9 +18,9 @@ I like NixOS. It's the best Linux experience I ever had because the declarative 
 
 > Why don't you use Nix without Docker?
 
-Hosting homelab services is a breeze on NixOS. The community just makes awesome modules to use for easy configuration. But not all services that I want to self host are available on NixOS out of the box and I don't want to develop my own Nix module just to host some random app I found on GitHub. For this reason I'd still like to be able to use docker compose to set up services as I did in the past.
+Hosting homelab services is a breeze on NixOS. The community just makes awesome modules to use for easy configuration. But not all services that I want to self-host are available on NixOS out of the box and I don't want to develop my own Nix module just to host some random app I found on GitHub. For this reason I'd still like to be able to use docker compose to set up services as I did in the past.
 
-And that is also another argument for docker compose. I'm very familiar with Docker and Compose and have a lot stacks already setup that I want to use without much migration work. Furthermore most of the self hosted stuff has example docker composes for you to just copy and paste.
+And that is also another argument for docker compose. I'm very familiar with Docker and Compose and have a lot of stacks already set up that I want to use without much migration work. Furthermore, most of the self-hosted stuff has example docker composes for you to just copy and paste.
 
 This does boil down to me being lazy or not knowing Nix that well, but I don't care. :D
 
@@ -41,21 +41,21 @@ The converting of the docker composes would also be a bit of a pain.
 
 ## [Arion](https://docs.hercules-ci.com/arion/#_how_it_works)
 
-This is a tool to basically define docker composes inside of a nix module. It's a thin wrapper around nix and docker compose.
+This is a tool to basically define docker composes inside a nix module. It's a thin wrapper around nix and docker compose.
 
-This looks pretty good but doesn't see much use in the community and it is another format on top of docker compose which I don't really like.
+This looks pretty good but doesn't see much use in the community, and it is another format on top of docker compose which I don't really like.
 
 Maybe I'll use this in the future though.
 
 ## What to do then?
 
-The truth is that the 100% Nix approach doesn't work for me here but I still use Nix to achieve a good setup. Let's get into it.
+The truth is that the 100% Nix approach doesn't work for me here, but I still use Nix to achieve a good setup. Let's get into it.
 
 # Docker Compose as a Systemd service
 
-I will use [Mealie](https://mealie.io/) as the example service I install. Mealie is an awesome self hosted recipe manager.
+I will use [Mealie](https://mealie.io/) as the example service I install. Mealie is an awesome self-hosted recipe manager.
 
-So first of all I use Nix to install Docker like this:
+So first I use Nix to install Docker like this:
 
 ```nix
 virtualisation.docker.enable = true;
@@ -63,7 +63,7 @@ virtualisation.docker.enable = true;
 
 (This one line installs docker. How awesome is this?)
 
-This was the easy part but how do we get the docker-compose.yaml on the system?
+This was the easy part, but how do we get the docker-compose.yaml on the system?
 
 The easiest way to create a file is with the `etc` module. With this you can create folders and files in the `/etc` directory. So what I do for Mealie is this:
 
@@ -178,4 +178,4 @@ Here is a link to my nix repo on GitHub, where you can find the full file: [meal
 
 # Closing Words
 
-I'm really happy with this solution. This has a good declarative setup and even has some benefits to it (systemd status and logs). I will definitely shift all my compose setups over to NixOS with this setup and then migrate them directly to Nix if they are available and I'm not lazy.
+I'm really happy with this solution. This has a good declarative setup and even has some benefits to it (systemd status and logs). I will definitely shift all my compose setups over to NixOS with this setup and then migrate them directly to Nix if they are available, and I'm not lazy.

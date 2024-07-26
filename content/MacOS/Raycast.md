@@ -10,7 +10,7 @@ date: "2024-07-22"
 description: Raycast is an awesome Spotlight replacement and I couldn't work without it. Calendar Events, App switching, Window Management, Extensions and much more.
 title: Have everything at your fingertips with Raycast
 ---
-When I switched to MacOS it really was something different. Coming from Windows I didn't feel at home but I was open to adjust my workflow to fit MacOS best.
+When I switched to MacOS it really was something different. Coming from Windows I didn't feel at home, but I was open to adjust my workflow to fit MacOS best.
 
 First thing my colleagues showed me was Spotlight. This is basically an app launcher and search tool on your OS. But it also has some neat little features like calculating in the search bar or searching the web. This is kind of nice but a huge difference to the search on windows.
 
@@ -32,9 +32,9 @@ They even have a camera preview now before you join the meeting which is kind of
 
 ## App switching
 ![[hollow-knight.png]]
-This is pretty obvious, but this has a few things about it which makes the app switching especially good and fast. The way MacOS app switching works is that if you have the application not open yet it will open the app, but if there is an instance of that app open it switches the focus to that app. I really like this behaviour
+This is pretty obvious, but this has a few things about it which makes the app switching especially good and fast. The way MacOS app switching works is that if you have the application not open, yet it will open the app, but if there is an instance of that app open it switches the focus to that app. I really like this behavior.
 
-You can of course type in the app you wanna use and Raycast will find it. But you can also assign aliases to apps. For example Firefox could just be `ff`. Then you only type in that, press space and you opened that app. You could also assign a keybind to the app and that completely changed my workflow. Because of the way Mac handles app launch/switch this enables you to navigate to the open app regardless on which space its located.
+You can of course type in the app you wanna use and Raycast will find it. But you can also assign aliases to apps. For example Firefox could just be `ff`. Then you only type in that, press space and you opened that app. You could also assign a key bind to the app and that completely changed my workflow. Because of the way Mac handles app launch/switch this enables you to navigate to the open app regardless on which space its located.
 
 For my specific setup I use `Alt` + a fitting character for the app. For example `Alt` + `c` for the Arc Browser. (This is because I used Chrome before)
 
@@ -68,7 +68,7 @@ This really is what makes Raycast so great in my opinion. The community is just 
 - Ever needed to look into a JWT?
 - Ever needed a color picker?
 
-And these are just are just a few examples. This really isn't about what Raycast can do that others can't. But more of how do I these things, how fast can I do them, how convenient is it to do. Or how many apps do I have to use to get things done. And with more and more extensions coming out I can replace more and more apps I have on my mac.
+And these are just a few examples. This really isn't about what Raycast can do that others can't. But more of how do I these things, how fast can I do them, how convenient is it to do. Or how many apps do I have to use to get things done. And with more and more extensions coming out I can replace more and more apps I have on my Mac.
 
 I'll list my favorite extensions here but keep in mind that I won't list all of them.
 ## Password Generator
@@ -78,7 +78,7 @@ Pretty obvious what this does, but it really comes in handy. In my job as a DevO
 This can encode and decode Base64 strings. This also comes in handy for secrets in Kubernetes because those are always Base64 encoded. And if I quickly wanna add or change a secret this is a real lifesaver.
 
 ## JWT
-For quickly looking into JWTs I always used https://jwt.io which still is a very cool site. But pasting your "secure" token into a website you don't own just feels wrong. Meet the JWT extension which just looks at the token in your clipboard and let's you search through it.
+For quickly looking into JWTs I always used https://jwt.io which still is a very cool site. But pasting your "secure" token into a website you don't own just feels wrong. Meet the JWT extension which just looks at the token in your clipboard and lets you search through it.
 
 ## Color Picker
 I'm also doing design and my own website in my free time and I often need to yoink a color from a website or picture to adjust my color scheme. For this the color picker is just awesome.
@@ -127,4 +127,4 @@ https://www.raycast.com/store
 You can also extend Raycast with simple scripts. Especially for stuff that needs arguments.
 
 # Closing Words
-I hope you can kind of understand why I like Raycast so much. I would really miss this if I'd switch to Linux. I know there is rofi but this doesn't have the same community and tools developed around it.
+I hope you can kind of understand why I like Raycast so much. I would really miss this if I'd switch to Linux. I know there is rofi, but this doesn't have the same community and tools developed around it.

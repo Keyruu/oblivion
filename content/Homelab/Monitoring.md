@@ -17,9 +17,9 @@ date: 2024-07-23
 ---
 You should first read about [[NixOS for Servers|why I love NixOS on the server]].
 
-I really procrastinated on setting up my monitoring stack for my homelab. I mean how they heck are you supposed to have an overview of all services needed for a proper monitoring stack? There is Grafana, Prometheus, Loki, Alertmanager, promtail, node_exporter and more. Every service has it's own documentation and configuration.
+I really procrastinated on setting up my monitoring stack for my homelab. I mean how they heck are you supposed to have an overview of all services needed for a proper monitoring stack? There is Grafana, Prometheus, Loki, Alertmanager, promtail, node_exporter and more. Every service has its own documentation and configuration.
 
-This is a real pain to setup and maintain. But NixOS has a great solution for this. There are existing modules for all of these services and the configuration can be done in nix. This does sound weird but this has some big benefits:
+This is a real pain to set up and maintain. But NixOS has a great solution for this. There are existing modules for all of these services and the configuration can be done in nix. This does sound weird, but this has some big benefits:
 
 - You have one configuration language instead 4 different ones
 - You can reference the configuration of other services (Look at the Grafana config later on)
@@ -37,7 +37,7 @@ This is a service that fetches metrics from the node via different collectors. F
 ## [cAdvisor](https://github.com/google/cadvisor)
 This fetches data (CPU, RAM etc.) from cgroups, most commonly docker containers. But this can also get data on systemd services because there are cgroup based as well.
 
-For cAdvisor to also monitor non docker workloads (systemd services) you need to set an extra options: `--docker_only=false`.
+For cAdvisor to also monitor non docker workloads (systemd services) you need to set an extra option: `--docker_only=false`.
 
 ## [Prometheus](https://prometheus.io/)
 Prometheus is the service that scrapes metrics from the services. It basically fetches the metrics endpoint every x seconds and stores them in a time series database.
@@ -100,7 +100,7 @@ Here is the config for the exporters and prometheus itself:
 > If I would change the port of node_exporter it would update it in the targets as well!
 
 > [!info]
-> I use nginx to proxy the traffic to the services that is why the `listenAddress` is `127.0.0.1`. If you want to access the port directly you'd have to use `0.0.0.0`.
+> I use nginx to proxy the traffic to the services, that is why the `listenAddress` is `127.0.0.1`. If you want to access the port directly you'd have to use `0.0.0.0`.
 > 
 > I will also show the nginx config at the end.
 >
@@ -152,7 +152,7 @@ Loki is a datastore made by Grafana to store logs and query them.
 ## [promtail](https://grafana.com/docs/loki/latest/send-data/promtail/)
 We now have Loki but we also need something that pushes those logs into Loki. This is what promtail is for.
 
-Promtail needs to have file permissions to read the log files. So for the nginx logs you have give the promtail user the proper group.
+Promtail needs to have file permissions to read the log files. So for the nginx logs you have to give the promtail user the proper group.
 
 ```nix title="promtail.nix"
 {config, ...}: {
@@ -224,7 +224,7 @@ Promtail needs to have file permissions to read the log files. So for the nginx 
 Now we still have a thing to do before we can look at our metrics. We want to get notified when something doesn't go as expected. For this Prometheus has the [Alertmanager](https://github.com/prometheus/alertmanager).
 
 > [!warning]
-> In my config I use SMTP for sending alerts. For this you need a password and you shouldn't just put your secrets as plain text into the nix configs. Please use something like [sops-nix](https://github.com/Mic92/sops-nix). This takes a while to setup and wrap your head around but is necessary to have a secure config.
+> In my config I use SMTP for sending alerts. For this you need a password, and you shouldn't just put your secrets as plain text into the nix configs. Please use something like [sops-nix](https://github.com/Mic92/sops-nix). This takes a while to set up and wrap your head around but is necessary to have a secure config.
 > ~~I will probably write a post about this in the future.~~ I did write something about it [[NixOS for Servers#Secrets|here]].
 
 But nonetheless here is my config:
@@ -345,10 +345,10 @@ users.groups.alertmanager = {};
 
 # Visualize
 ## [Grafana](https://grafana.com)
-The final step is too actual see something. For that you use Grafana. This is a tool for creating dashboards for various datasources. In our case Prometheus and Loki.
+The final step is too actual see something. For that you use Grafana. This is a tool for creating dashboards for various data sources. In our case Prometheus and Loki.
 
 > [!info]
->You create dashboards in the UI but for recovery and version management sake you should also have them in a Git repo. The workflow here is to start with and empty `dashboards` folder. Try out some of the dashboards and then put the ones you want to keep or you created yourself into dashboards folder as a JSON. To do this just click on share and then export in the Grafana UI.
+>You create dashboards in the UI but for recovery and version management sake you should also have them in a Git repo. The workflow here is to start with and empty `dashboards` folder. Try out some of the dashboards and then put the ones you want to keep, or you created yourself into dashboards folder as a JSON. To do this just click on share and then export in the Grafana UI.
 
 ```nix title="grafana.nix"
 {config, ...}: {
@@ -412,7 +412,7 @@ Now you also need to import Dashboards into Grafana. For this I can recommend th
 With this we basically have everything we need for the base of our monitoring services. But I mentioned that I use nginx to proxy the requests for Grafana and Prometheus.
 
 # (Optional) NGINX / Proxy
-I won't go into great detail how the nginx config works, I do want to have it in this guide for completeness sake. I will probably do a post in the future that describes this setup in more detail.
+I won't go into great detail how the nginx config works, I do want to have it in this guide for completeness’ sake. I will probably do a post in the future that describes this setup in more detail.
 
 ```nix title="nginx.nix"
 {config, ...}: {
@@ -470,4 +470,4 @@ I won't go into great detail how the nginx config works, I do want to have it in
 > If you don't know what `sops`, `acme` and all the other settings mean you probably shouldn't use this config :D
 
 # Closing remarks
-This is a base setup. You should adjust all the snippets however you like and add as much stuff as you want to. A monitoring setup is never really done but I think I'm at a pretty good point with mine. To see the current configuration I have you can look at my [shinyflakes repo](https://github.com/Keyruu/shinyflakes/tree/main) on GitHub.
+This is a base setup. You should adjust all the snippets however you like and add as much stuff as you want to. A monitoring setup is never really done, but I think I'm at a pretty good point with mine. To see the current configuration I have you can look at my [shinyflakes repo](https://github.com/Keyruu/shinyflakes/tree/main) on GitHub.

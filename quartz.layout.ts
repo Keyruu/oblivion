@@ -24,7 +24,8 @@ export const sharedPageComponents: SharedLayout = {
     links: {
       Keyruu: "https://keyruu.de",
       GitHub: "https://github.com/keyruu/",
-      LinkedIn: "https://www.linkedin.com/in/lucasrott/"
+      LinkedIn: "https://www.linkedin.com/in/lucasrott/",
+      Imprint: "https://keyruu.de/imprint"
     },
   }),
 }
