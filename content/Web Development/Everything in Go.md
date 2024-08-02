@@ -109,7 +109,7 @@ I quickly noticed that I do have a big thing with client heavy interaction. This
 Easy right? Yeah, not really with how I had it implemented. The actual carousel is only the covers, the text and the links change with the changed slide (client state). For this I used AlpineJS. 
 
 I just put the data into `x-data` of the parent `div`.
-```go {25} title="releases.templ"
+```templ {25} title="releases.templ"
 func getDataAsJs(releases []models.Releases) string {
 	var sb strings.Builder
 	sb.WriteString("[")
@@ -143,7 +143,7 @@ templ Releases(releases []models.Releases, initialSlide int, history bool) {
 ```
 
 Then I just use the data of the current slide like this:
-```go {22,26-27} title="releases.templ"
+```templ {22,26-27} title="releases.templ"
 templ Releases(releases []models.Releases, initialSlide int, history bool) {
 	<div class="text-gray-600 body-font my-auto overflow-hidden">
 		<div
@@ -179,7 +179,7 @@ templ Releases(releases []models.Releases, initialSlide int, history bool) {
 ```
 
 I still have to manage something else though. On the dedicated site for my releases it should change the title when you change the slide. And I'm actually using JS for this, look at this:
-```go title="releases.templ"
+```templ title="releases.templ"
 <script type="text/javascript">
 	function onSlideChange(event) {
 		this.index = event.detail[0].activeIndex;
@@ -206,7 +206,7 @@ My tech interests are three tabs, DevOps, Frontend and Backend.
 Porting this to htmx wasn't hard at all. It's basically just [this example](https://htmx.org/examples/tabs-hateoas/). 
 
 This is my code:
-```go title="fullstack.templ"
+```templ title="fullstack.templ"
 templ stackButton(name string, selected bool) {
 	<h1
 		class={ "m-4 lg:m-6 font-bold text-sm lg:text-xl p-2 lg:p-4 border-[1px]",
@@ -243,7 +243,7 @@ You can check how many times I have listened to which artist on my site.
 ![[have-i-listened-to.png]]
 
 For this I also wanted to display something when the server takes a bit to respond:
-```go title="have_i_listened_to.templ"
+```templ title="have_i_listened_to.templ"
 templ HaveIListenedTo() {
 	<style>
     [data-loading] {
