@@ -1,6 +1,6 @@
 ---
 title: Escape JavaScript hell and write everything in Go
-description: I want to introduce you to a better world, without JavaScript and without Frontend Framework mania. Introducing my Go, Templ, HTMX, AlpineJS, PocketBase and TailwindCSS stack.
+description: I want to introduce you to a better world without Frontend Framework mania. Introducing my Go, Templ, HTMX, AlpineJS, PocketBase and TailwindCSS stack.
 draft: false
 tags:
   - webdev
