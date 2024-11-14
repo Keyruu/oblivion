@@ -87,7 +87,7 @@ For completeness, here is a `nginx.conf` for optimized security:
 > Yoinked this from this [GitHub post](https://gist.github.com/plentz/6737338)
 > ```nginx
 > # don't send the nginx version number in error pages and Server header
-> jserver_tokens off;
+> server_tokens off;
 > 
 > # config to don't allow the browser to render the page inside an frame or iframe
 > # and avoid clickjacking http://en.wikipedia.org/wiki/Clickjacking

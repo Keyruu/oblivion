@@ -111,7 +111,7 @@ systemd.services.mealie = {
  docker compose -f /etc/stacks/mealie/compose.yaml up
   '';
   restartTriggers = [
- "/etc/stacks/mealie/compose.yaml"
+    config.environment.etc."stacks/mealie/compose.yaml".source
   ];
 };
 ```
@@ -168,7 +168,7 @@ in
         docker compose -f /etc/${dir}/compose.yaml up
       '';
       restartTriggers = [
-        environment.etc."${dir}/compose.yaml".text
+        config.environment.etc."stacks/mealie/compose.yaml".source
       ];
     };
   }
