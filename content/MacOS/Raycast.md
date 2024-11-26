@@ -126,5 +126,5 @@ https://www.raycast.com/store
 ## Custom Scripts
 You can also extend Raycast with simple scripts. Especially for stuff that needs arguments.
 
-# Closing Words
+# Closing remarks
 I hope you can kind of understand why I like Raycast so much. I would really miss this if I'd switch to Linux. I know there is rofi, but this doesn't have the same community and tools developed around it.
