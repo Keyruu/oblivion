@@ -11,6 +11,7 @@ tags:
   - blog
 date: 2024-11-26
 ---
+![[aerospace.png]]
 Everybody has windows and I don't mean the operating system. These things that use CPU and RAM and sometimes crash. These want to be positioned somewhere on your screen, but where and what size?
 
 I never had a problem in the past with how Windows and Ubuntu manage this, but then after I finished my apprenticeship I got a MacBook, and it definitely took some getting used to. Some of the windows are not full screen by default and can't be full sized by a click. No split in half, no dragging it to the top to full size it. Why? Because it's Apple. (I think they fixed this with Sequoia, took them long enough)

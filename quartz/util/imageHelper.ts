@@ -17,7 +17,7 @@ export async function getSatoriFont(headerFontName: string, bodyFontName: string
 
   // Fetch fonts
   const headerFont = await fs.readFile("quartz/static/fonts/Zodiak-Extrabold.ttf")
-  const bodyFont = await fs.readFile("quartz/static/fonts/ClashDisplay-Regular.ttf")
+  const bodyFont = await fs.readFile("quartz/static/fonts/Satoshi-Regular.ttf")
   const logoFont = await fs.readFile("quartz/static/fonts/Aktura-Regular.ttf")
 
   // Convert fonts to satori font format and return

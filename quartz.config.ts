@@ -26,7 +26,7 @@ const config: QuartzConfig = {
       cdnCaching: false,
       typography: {
         header: "Zodiak",
-        body: "GeneralSans",
+        body: "Satoshi",
         code: "JetBrainsMono",
       },
       colors: {
