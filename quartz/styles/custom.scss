@@ -11,6 +11,16 @@
 }
 
 @font-face {
+  font-family: 'GeneralSans';
+  src: url("/static/fonts/GeneralSans-Variable.woff2") format("woff2"),
+  url("/static/fonts/GeneralSans-Variable.woff") format("woff"),
+  url("/static/fonts/GeneralSans-Variable.ttf") format("truetype");
+  font-weight: 200 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'Zodiak';
   src: url("/static/fonts/Zodiak-Variable.woff2") format("woff2"),
   url("/static/fonts/Zodiak-Variable.woff") format("woff"),
@@ -20,12 +30,23 @@
   font-style: normal;
 }
 
+
 @font-face {
   font-family: 'JetBrainsMono';
   src: url("/static/fonts/JetBrainsMono-Variable.woff2") format("woff2"),
   url("/static/fonts/JetBrainsMono-Variable.woff") format("woff"),
   url("/static/fonts/JetBrainsMono-Variable.ttf") format("truetype");
   font-weight: 100 800;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Aktura';
+  src: url("/static/fonts/Aktura-Regular.woff2") format("woff2"),
+  url("/static/fonts/Aktura-Regular.woff") format("woff"),
+  url("/static/fonts/Aktura-Regular.ttf") format("truetype");
+  font-weight: 400;
   font-display: swap;
   font-style: normal;
 }
@@ -42,6 +63,10 @@ img[alt*="right"] {
   margin-left: 1rem;
   margin-bottom: 2px;
   margin-top: 2px;
+}
+
+article {
+  font-size: large;
 }
 
 // put your custom CSS here!
