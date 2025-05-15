@@ -32,7 +32,7 @@ I found this by accident through some podman documentation link I've found, and 
 
 I just wanna be able to define every part of a compose stack with Nix and don't wanna miss out on features like `depends_on` or network creation. 
 
-# But what is quadlet now?
+# But what is quadlet?
 
 Quadlet is a podman feature that allows you to define systemd-like units to create a proper systemd service that runs a container, creates a network or a volume (and it can do more, read about it [here](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html)). It introduces new unit fields that can describe these resources. Here is an example:
 ```systemd
