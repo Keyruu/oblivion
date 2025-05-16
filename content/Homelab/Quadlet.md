@@ -24,6 +24,7 @@ But my solution had some drawbacks:
 - The CPU and Memory metrics are not correct, because they do not belong to the same cgroup
 - You can't use systemd controls to control the individual containers
 - The restart trigger will restart the whole docker compose
+
 So, as you can see this is not an ideal solution. 
 
 But as an avid homelabber, I, of course, have to rewrite my setup every few years and that led me to Quadlet.
