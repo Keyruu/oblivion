@@ -111,6 +111,14 @@ function addGlobalPageResources(ctx: BuildCtx, componentResources: ComponentReso
         plausible("pageview")
       })
     `)
+  } else if (cfg.analytics?.provider === "rybbit") {
+    componentResources.afterDOMLoaded.push(`
+      const rybbitScript = document.createElement("script")
+      rybbitScript.src = "https://sorryihavetodothis.keyruu.de/api/script.js"
+      rybbitScript.setAttribute("data-site-id", "3")
+      rybbitScript.defer = true
+      document.head.appendChild(rybbitScript)
+    `)
   } else if (cfg.analytics?.provider === "umami") {
     componentResources.afterDOMLoaded.push(`
       const umamiScript = document.createElement("script")
