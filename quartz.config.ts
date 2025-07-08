@@ -12,10 +12,6 @@ const config: QuartzConfig = {
     pageTitle: "🏰️ Oblivion",
     enableSPA: true,
     enablePopovers: true,
-    analytics: {
-      provider: "plausible",
-      host: "https://sorryihavetodothis.keyruu.de"
-    },
     locale: "en-US",
     baseUrl: "oblivion.keyruu.de",
     ignorePatterns: ["private", "templates", ".obsidian"],
