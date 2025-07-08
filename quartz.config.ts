@@ -12,6 +12,9 @@ const config: QuartzConfig = {
     pageTitle: "🏰️ Oblivion",
     enableSPA: true,
     enablePopovers: true,
+    analytics: {
+      provider: "rybbit"
+    },
     locale: "en-US",
     baseUrl: "oblivion.keyruu.de",
     ignorePatterns: ["private", "templates", ".obsidian"],
